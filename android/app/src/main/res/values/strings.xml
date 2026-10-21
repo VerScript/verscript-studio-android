@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">VerScript Studio</string>
+    <string name="title_activity_main">VerScript Studio</string>
+    <string name="package_name">io.github.verscript.studio</string>
+</resources>

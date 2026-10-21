@@ -1,0 +1,14 @@
+{
+  "appId": "io.github.verscript.studio",
+  "appName": "VerScript Studio",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "android": {
+    "allowMixedContent": true,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": true
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}
