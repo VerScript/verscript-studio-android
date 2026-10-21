@@ -33,13 +33,23 @@ Official standalone, offline-first mobile IDE for the **VerScript** programming 
 
 ---
 
-## 📥 Installation
+## 📥 How to Run & Install on Android
 
-Download the latest APK or release package from the [Releases](https://github.com/VerScript/verscript-studio-android/releases) page.
+### Method 1: Instant PWA Install (Recommended — 100% Offline, Zero Parse Errors)
+Because Android's package manager requires specific digital signing certificates for raw `.apk` files, the cleanest and fastest way to install on any Android phone is via **PWA (Progressive Web App)**:
 
-1. Download `VerScript-Studio-Android-v1.0.0.apk` on your Android device.
-2. Open the downloaded file and select **Install** (enable "Install from unknown sources" if prompted).
-3. Launch **VerScript Studio** and start coding instantly offline!
+1. On your Android phone, open Chrome or Brave and visit **[https://verscript.github.io/IDE/](https://verscript.github.io/IDE/)** (or open the VerScript Studio Web App).
+2. Tap the browser menu (**⋮** top right) and select **"Add to Home screen"** or **"Install app"**.
+3. Android creates a full-screen standalone application icon on your phone's home screen.
+4. Launch it anytime — it runs **100% offline** with full local file persistence, quick coding toolbar, and the complete 17-module VerScript VM!
+
+---
+
+### Method 2: Sideload Compiled Android APK
+1. Download the latest compiled debug/release `.apk` from the [Releases](https://github.com/VerScript/verscript-studio-android/releases) page.
+2. In Android Settings, ensure **"Install unknown apps"** is allowed for your browser or file manager.
+3. Tap the `.apk` file to install.
+4. Launch **VerScript Studio** and enjoy offline mobile coding!
 
 ---
 

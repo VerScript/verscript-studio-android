@@ -1,12 +1,13 @@
 import React from 'react';
+import VerScriptLogo from './VerScriptLogo';
 
 export default function HeaderBar({ activeFileName, isRunning, onRun, activeTab, setActiveTab }) {
   return (
     <header className="header-bar">
       <div className="header-left">
-        <div className="app-logo-badge">
-          <span>⚡</span>
-          <span>VerScript</span>
+        <div className="app-logo-badge" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <VerScriptLogo width={22} height={22} />
+          <span>VerScript Studio</span>
         </div>
         <div className="file-pill" title={activeFileName}>
           <span>📄</span>
