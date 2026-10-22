@@ -79,6 +79,7 @@ export default function App() {
   const [isRunning, setIsRunning] = useState(false);
   const [executionTime, setExecutionTime] = useState(0);
   const [promptRequested, setPromptRequested] = useState(null);
+  const [updateInfo, setUpdateInfo] = useState(null);
 
   const textareaRef = useRef(null);
   const promptResolverRef = useRef(null);
@@ -89,6 +90,28 @@ export default function App() {
       localStorage.setItem('vs_android_files', JSON.stringify(files));
     } catch (e) {}
   }, [files]);
+
+  // Check online release updates
+  useEffect(() => {
+    const checkUpdates = async () => {
+      try {
+        const res = await fetch('https://api.github.com/repos/VerScript/verscript-studio-android/releases/latest');
+        if (res.ok) {
+          const data = await res.json();
+          const latestTag = data.tag_name || '';
+          const currentVersion = 'v1.0.0';
+          if (latestTag && latestTag !== currentVersion) {
+            setUpdateInfo({
+              tag: latestTag,
+              url: data.html_url || 'https://github.com/VerScript/verscript-studio-android/releases',
+              notes: data.name || latestTag
+            });
+          }
+        }
+      } catch (e) {}
+    };
+    checkUpdates();
+  }, []);
 
   const activeCode = files[activeFileName] || '';
 
@@ -182,6 +205,52 @@ export default function App() {
 
   return (
     <div className="app-container">
+      {updateInfo && (
+        <div style={{
+          background: 'linear-gradient(90deg, #1e1b4b, #312e81)',
+          borderBottom: '1px solid #6366f1',
+          padding: '8px 12px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          fontSize: '12px',
+          color: '#e0e7ff',
+          zIndex: 99
+        }}>
+          <div>
+            🚀 <strong>Update Available:</strong> {updateInfo.tag}
+          </div>
+          <div style={{ display: 'flex', gap: '6px' }}>
+            <a 
+              href={updateInfo.url} 
+              target="_blank" 
+              rel="noreferrer" 
+              style={{
+                background: '#4f46e5',
+                color: '#fff',
+                padding: '3px 8px',
+                borderRadius: '4px',
+                textDecoration: 'none',
+                fontWeight: 700
+              }}
+            >
+              Get APK
+            </a>
+            <button 
+              onClick={() => setUpdateInfo(null)}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                color: '#a5b4fc',
+                cursor: 'pointer',
+                fontWeight: 700
+              }}
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
       <HeaderBar
         activeFileName={activeFileName}
         isRunning={isRunning}
